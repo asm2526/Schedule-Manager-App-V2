@@ -1,10 +1,10 @@
-import './App.css'
+import Calendar from "./Calendar"
 
 function App() {
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-5xl font-bold text-blue-600">
-        Tailwind is Working!
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <h1 className="w-full max-w-5xl">
+        <Calendar />
       </h1>
     </div>
 
