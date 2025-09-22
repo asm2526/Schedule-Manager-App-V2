@@ -1,5 +1,20 @@
+# FastAPI framework
 fastapi
+
+# Uvicorn server
 uvicorn[standard]
+
+# MongoDB async driver
 motor
+
+# Data validation
 pydantic
+
+# Environment variables
 python-dotenv
+
+# Password hashing
+passlib[bcrypt]
+
+# JWT authentication
+python-jose[cryptography]
