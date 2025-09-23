@@ -18,6 +18,14 @@ export default function RegisterScreen() {
         password,
       });
       setMessage(`✅ Registered: ${res.data.username}`);
+
+      const loginRes = await axios.post("http://192.168.1.108:8000/login", {
+        username,
+        password,
+      });
+      setMessage(
+        "Registered & Logged in. Token: ${loginRes.data.access_token.slice(0,12)}..."
+      )
       setUsername("");
       setEmail("");
       setPhone("");
