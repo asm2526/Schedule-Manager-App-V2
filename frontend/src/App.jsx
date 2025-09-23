@@ -1,47 +1,35 @@
-import Calendar from "./Calendar"
+import { useState } from "react"
+import LoginPage from "./LoginPage"
+import RegisterPage from "./RegisterPage"
 
 function App() {
-  return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <h1 className="w-full max-w-5xl">
-        <Calendar />
-      </h1>
-    </div>
-
-  )
-}
-
-export default App
-/** 
-function App() {
-  const [count, setCount] = useState(0)
+  const [page, setPage] = useState("register") // default: show register page
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="min-h-screen bg-gray-100">
+      {/* Navigation bar */}
+      <nav className="bg-blue-600 text-white p-4 flex justify-center gap-6">
+        <button
+          onClick={() => setPage("register")}
+          className={`font-semibold hover:underline ${page === "register" ? "underline" : ""}`}
+        >
+          Register
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+        <button
+          onClick={() => setPage("login")}
+          className={`font-semibold hover:underline ${page === "login" ? "underline" : ""}`}
+        >
+          Login
+        </button>
+      </nav>
+
+      {/* Page content */}
+      <main className="flex items-center justify-center p-6">
+        {page === "register" && <RegisterPage />}
+        {page === "login" && <LoginPage />}
+      </main>
+    </div>
   )
 }
 
 export default App
-
-*/
