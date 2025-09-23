@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { useState } from "react";
 import { Button, StyleSheet, Text, TextInput, View } from "react-native";
@@ -13,6 +14,16 @@ export default function LoginScreen() {
         username,
         password,
       });
+
+      const token = res.data.access_token;
+
+      // Save JWT token to AsynchStorage
+      await AsyncStorage.setItem("authToken", token);
+
+      //clearing entries after log in
+      setUsername("");
+      setPassword("");
+
       setMessage("✅ Logged in! Token: " + res.data.access_token.slice(0, 12) + "...");
     } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
