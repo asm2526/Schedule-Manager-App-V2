@@ -12,7 +12,7 @@ export default function RegisterScreen() {
 
   const handleRegister = async () => {
     try {
-      const res = await axios.post("http://192.168.1.108:8000/register", { // replace with your Mac’s IP
+      const res = await axios.post("http://10.36.226.109:8000/register", { // replace with your Mac’s IP
         username,
         email,
         phone,
@@ -20,7 +20,7 @@ export default function RegisterScreen() {
       });
       setMessage(`✅ Registered: ${res.data.username}`);
 
-      const loginRes = await axios.post("http://192.168.1.108:8000/login", {
+      const loginRes = await axios.post("http://10.36.226.109:8000/login", {
         username,
         password,
       });

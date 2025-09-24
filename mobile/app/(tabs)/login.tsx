@@ -10,7 +10,7 @@ export default function LoginScreen() {
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post("http://192.168.1.108:8000/login", {  // replace with your Mac's IP
+      const res = await axios.post("http://10.36.226.109:8000/login", {  // replace with your Mac's IP
         username,
         password,
       });
