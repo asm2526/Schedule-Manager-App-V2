@@ -102,22 +102,29 @@ async def forgot_password_confirm_email(
     code: str = Body(...),
     new_password: str = Body(...)
 ):
-    if reset_codes.get(email) != code:
+    
+    # Check code first
+    stored_code = reset_codes.get(email)
+    if not stored_code or stored_code != code:
         raise HTTPException(status_code=400, detail="Invalid or expired code")
     
-    user = await db["useres"].find_one({"email": email})
-    if not user:
-        raise HTTPException(status_code=404, detail = "User not found")
-    
+    # normailze email
+    normalized_email = email.strip().lower()
 
+    # look up user
+    user = await db["users"].find_one({"email": normalized_email})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # hash new password
     hashed = hash_password(new_password)
     await db["users"].update_one(
         {"_id": user["_id"]},
         {"$set": {"hashed_password": hashed}}
     )
 
-    # clear used code
+    # remove used code
     del reset_codes[email]
 
-    return {"detail": "Password updated successfully"}
+    return {"detail": "Password updated succesfully"}
     
